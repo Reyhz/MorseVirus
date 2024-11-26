@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bud8efaqi8i1d"]
+
+[ext_resource type="PackedScene" uid="uid://c6g7vfdtxfyiu" path="res://enemy.tscn" id="1_3itav"]
+[ext_resource type="Texture2D" uid="uid://gmkf0i62k58n" path="res://icon.svg" id="1_o0shy"]
+[ext_resource type="Script" path="res://main.gd" id="1_wu8vw"]
+
+[sub_resource type="Curve2D" id="Curve2D_upvow"]
+bake_interval = 4.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -515, 0, 0, 0, 0, 442, -442, 0, 0, 0, 0, 553, -14, 0, 0, 0, 0, 436, 431, 0, 0, 0, 0, 8, 527, 0, 0, 0, 0, -443, 439, 0, 0, 0, 0, -555, 6, 0, 0, 0, 0, -430, -444, 0, 0, 0, 0, -3, -515)
+}
+point_count = 9
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mac2y"]
+radius = 63.421
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_wu8vw")
+mobScene = ExtResource("1_3itav")
+
+[node name="Spawner" type="Path2D" parent="."]
+position = Vector2(400, 400)
+curve = SubResource("Curve2D_upvow")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spawner"]
+position = Vector2(-3, -515)
+rotation = 0.162597
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_o0shy")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CircleShape2D_mac2y")
+
+[node name="MobSpawn" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="Player/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="MobSpawn" to="." method="_on_mob_spawn_timeout"]
