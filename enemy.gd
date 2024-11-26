@@ -4,18 +4,22 @@ extends CharacterBody2D
 var dirTo = null: set = set_dir
 var speed = 25.0: get = get_speed, set = set_speed
 
-var text = ""
+var value = "": get = get_value, set = set_value
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Text.text = value
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	velocity = position.direction_to(dirTo) * speed
 	move_and_slide()
+
+
+func set_value(val: String):
+	value = val
 
 
 func set_dir(dir):
@@ -32,6 +36,10 @@ func get_speed():
 
 func get_damage():
 	return damage
+
+
+func get_value():
+	return value
 
 
 func kill():

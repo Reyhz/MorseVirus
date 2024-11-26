@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var longPress = 0.03
+var pressTime = 0
+
 @export var mobScene: PackedScene
 @onready var player = $Player
 var health = 100: get = get_health, set = set_health
@@ -10,13 +13,45 @@ var currEnemies = 0
 var locked = false
 var lockedEnemy = null
 
+var morseValues = {
+	"A": ".-",
+	"B": "-...",
+	"C": "-.-.",
+	"D": "-..",
+	"E": ".",
+	"F": "..-.",
+	"G": "--.",
+	"H": "....",
+	"I": "..",
+	"J": ".---",
+	"K": "-.-",
+	"L": ".-..",
+	"M": "--",
+	"N": "-.",
+	"O": "---",
+	"P": ".--.",
+	"Q": "--.-",
+	"R": ".-.",
+	"S": "...",
+	"T": "-",
+	"U": "..-",
+	"V": "...-",
+	"W": ".--",
+	"X": "-..-",
+	"Y": "-.--",
+	"Z": "--.."
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	if Input.is_action_pressed("CHOSEN_ONE"):
+		pressTime += delta
+	
 	if currEnemies >= maxEnemies:
 		$MobSpawn.paused = true
 	elif currEnemies < maxEnemies:
@@ -33,7 +68,6 @@ func _process(_delta):
 		#
 		# TODO: Handle input, the only button to play this game
 		pass
-	
 
 
 func get_health():
@@ -71,6 +105,7 @@ func _on_mob_spawn_timeout():
 	mob.position = spawnPoint.global_position
 	mob.speed = randf_range(15.0, 50.0)
 	mob.dirTo = player.position
+	mob.value = morseValues[morseValues.keys().pick_random()]
 	
 	add_child(mob)
 	currEnemies += 1
