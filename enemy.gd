@@ -7,6 +7,8 @@ var speed = 25.0: get = get_speed, set = set_speed
 var value = "": get = get_value, set = set_value
 
 
+signal ded
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Text.text = value
@@ -42,5 +44,11 @@ func get_value():
 	return value
 
 
+func is_locked():
+	# TODO : Make the enemy glow ? or at least make it seen for the player
+	pass
+
+
 func kill():
 	queue_free()
+	ded.emit()
