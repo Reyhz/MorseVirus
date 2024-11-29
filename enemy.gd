@@ -11,7 +11,7 @@ signal ded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Text.text = value
+	update_text()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,11 +24,11 @@ func set_value(val: String):
 	value = val
 
 
-func set_dir(dir):
+func set_dir(dir: Vector2):
 	dirTo = dir
 
 
-func set_speed(spd):
+func set_speed(spd: float):
 	speed = spd
 
 
@@ -45,8 +45,18 @@ func get_value():
 
 
 func is_locked():
-	# TODO : Make the enemy glow ? or at least make it seen for the player
-	pass
+	$Sprite2D.material.set_shader_parameter("onoff", 1.0)
+
+
+# String argument of this method represent a substring of self.Value to highlight
+func update_text(substring: String = ""):
+	$Text.clear()
+	$Text.append_text("[center]")
+	if substring:
+		$Text.push_color(Color.YELLOW_GREEN)
+		$Text.append_text(substring)
+		$Text.pop()
+	$Text.append_text(value.substr(substring.length()))
 
 
 func kill():
