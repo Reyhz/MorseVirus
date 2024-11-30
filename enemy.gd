@@ -5,6 +5,7 @@ var dirTo = null: set = set_dir
 var speed = 25.0: get = get_speed, set = set_speed
 
 var value = "": get = get_value, set = set_value
+@export var scoreValue = 10: get = get_score_value
 
 
 signal ded
@@ -42,6 +43,10 @@ func get_damage():
 
 func get_value():
 	return value
+
+
+func get_score_value():
+	return scoreValue
 
 
 func is_locked():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bud8efaqi8i1d"]
+[gd_scene load_steps=7 format=3 uid="uid://bud8efaqi8i1d"]
 
 [ext_resource type="PackedScene" uid="uid://c6g7vfdtxfyiu" path="res://enemy.tscn" id="1_3itav"]
 [ext_resource type="Texture2D" uid="uid://gmkf0i62k58n" path="res://icon.svg" id="1_o0shy"]
 [ext_resource type="Script" path="res://main.gd" id="1_wu8vw"]
+[ext_resource type="PackedScene" uid="uid://hennvjauu7ii" path="res://hud.tscn" id="4_cgksi"]
 
 [sub_resource type="Curve2D" id="Curve2D_upvow"]
 bake_interval = 4.0
@@ -14,9 +15,12 @@ point_count = 9
 [sub_resource type="CircleShape2D" id="CircleShape2D_mac2y"]
 radius = 63.421
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node"]
 script = ExtResource("1_wu8vw")
 mobScene = ExtResource("1_3itav")
+
+[node name="Hud" parent="." instance=ExtResource("4_cgksi")]
+top_level = true
 
 [node name="Spawner" type="Path2D" parent="."]
 position = Vector2(400, 400)
@@ -40,5 +44,9 @@ shape = SubResource("CircleShape2D_mac2y")
 wait_time = 3.0
 autostart = true
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Player/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="MobSpawn" to="." method="_on_mob_spawn_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

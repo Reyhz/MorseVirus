@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://rq3xxvljvngx"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_tdpw8"]
+
+[sub_resource type="SystemFont" id="SystemFont_ynyil"]
+font_names = PackedStringArray("Atkinson Hyperlegible")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tdpw8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.0
+offset_top = 64.0
+offset_right = 98.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_ynyil")
+theme_override_font_sizes/font_size = 48
+text = "MORRUS"
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Play" type="Button" parent="Buttons"]
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.4
+anchor_right = 0.65
+anchor_bottom = 0.5
+offset_left = -3.05176e-05
+button_mask = 0
+shortcut_in_tooltip = false
+text = "PLAY"
+
+[node name="Settings" type="Button" parent="Buttons"]
+offset_left = 280.0
+offset_top = 520.0
+offset_right = 520.0
+offset_bottom = 580.0
+button_mask = 0
+shortcut_in_tooltip = false
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="Buttons"]
+offset_left = 280.0
+offset_top = 600.0
+offset_right = 520.0
+offset_bottom = 660.0
+button_mask = 0
+shortcut_in_tooltip = false
+text = "QUIT GAME"
