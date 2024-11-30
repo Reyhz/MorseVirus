@@ -17,6 +17,10 @@ var lockedEnemy = null
 var lockedValue = null
 var currValue = ""
 
+var multiplier = 1
+var comboTime = 2.0
+var inCombo = false
+
 var morseValues = {
 	"A": ".-",
 	"B": "-...",
@@ -48,8 +52,8 @@ var morseValues = {
 
 # TODOLIST: 
 # Tutorial window for first time player --> button to access it if player forgor
-# Diffculty setting --> More enemy / Higher Speed / More complex words ?
-# WARNING Don't forget to do textures, and sound if time allows it ( only 2d left )
+# Diffculty setting --> More enemy / Higher Speed / More complex words ? ( idk about last one )
+# WARNING Don't forget to do textures, and sound if time allows it ( only 28h left )
 # More mechanics ( if time allows it ) --> powerups, roguelike ( lol ?), deckbuilding ( wth reyhz? )
 
 
@@ -58,6 +62,7 @@ func _ready():
 	InputController.longPress.connect(_on_long_press)
 	InputController.shortPress.connect(_on_short_press)
 	$Hud.update_score(score)
+	reset_combo()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,6 +81,12 @@ func _process(delta):
 	elif locked:
 		if currValue == lockedValue:
 			kill_enemy(lockedEnemy)
+	
+	if inCombo:
+		comboTime -= delta
+		$Hud.update_combo(multiplier, comboTime)
+		if comboTime <= 0:
+			reset_combo()
 
 
 func get_health():
@@ -91,8 +102,25 @@ func set_health(value):
 
 
 func add_score(toAdd):
-	score += toAdd
+	score += toAdd * multiplier
 	$Hud.update_score(score)
+
+
+func combo_handler():
+	if !inCombo:
+		inCombo = true
+		$Hud/Multiplier.show()
+	
+	multiplier = multiplier + 1 if multiplier < 5 else multiplier
+	comboTime += 1.2 - (0.1 * (multiplier - 1))
+	$Hud.update_combo(multiplier, comboTime)
+
+
+func reset_combo():
+	$Hud/Multiplier.hide()
+	inCombo = false
+	multiplier = 1
+	comboTime = 2.0
 
 
 func kill_enemy(enemy: Node2D):
@@ -102,6 +130,7 @@ func kill_enemy(enemy: Node2D):
 		locked = false
 		currValue = ""
 		add_score(enemy.scoreValue)
+		combo_handler()
 
 
 func damage_player(damage):

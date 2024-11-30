@@ -24,6 +24,8 @@ font_names = PackedStringArray("Atkinson Hyperlegible")
 font_names = PackedStringArray("Atkinson Hyperlegible")
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+show_behind_parent = true
+z_index = -1
 collision_mask = 0
 script = ExtResource("1_vqicu")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hennvjauu7ii"]
+[gd_scene load_steps=8 format=3 uid="uid://hennvjauu7ii"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_athlr"]
 [ext_resource type="Script" path="res://pause_controller.gd" id="2_s5uph"]
@@ -12,8 +12,13 @@ subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_igqbm"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_5d376"]
+font_names = PackedStringArray("Atkinson Hyperlegible")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_5etge"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
 
 [node name="Hud" type="Control"]
@@ -243,3 +248,21 @@ layout_mode = 2
 [node name="Test" type="VBoxContainer" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Multiplier" type="Label" parent="."]
+layout_mode = 0
+offset_top = 705.0
+offset_right = 50.0
+offset_bottom = 757.0
+theme_override_fonts/font = SubResource("SystemFont_5etge")
+theme_override_font_sizes/font_size = 48
+text = "5x"
+
+[node name="TimeLeft" type="ProgressBar" parent="Multiplier"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_top = 52.0
+offset_right = 800.0
+offset_bottom = 79.0
+max_value = 3.2
+show_percentage = false

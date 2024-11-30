@@ -24,3 +24,8 @@ func convert_time(time: int):
 
 func update_score(score: int):
 	%ScoreHud.text = "SCORE : %07d" % score
+
+
+func update_combo(mutliplier: int, timeLeft: float):
+	$Multiplier.text = str(mutliplier) + "x"
+	$Multiplier/TimeLeft.value = timeLeft
