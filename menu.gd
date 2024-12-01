@@ -16,7 +16,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -26,7 +26,7 @@ func _on_short_press():
 	selected.grab_focus()
 
 
-func _on_long_press(pressTime):
+func _on_long_press(_pressTime):
 	button_handler(selected)
 
 

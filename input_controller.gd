@@ -2,6 +2,7 @@ extends Node
 
 @export var longPressTime = 0.200
 var pressTime = 0
+var highScore = 0
 
 signal pressed
 signal shortPress
@@ -9,7 +10,16 @@ signal longPress(pressedTime)
 
 
 func _ready():
-	pass
+	var config = ConfigFile.new()
+	var loaded = config.load("user://data.reyhz")
+	var created = false
+	
+	if loaded == ERR_FILE_NOT_FOUND:
+		config.set_value("GAME", "High Score", highScore)
+		config.save("user://data.reyhz")
+	
+	if !created:
+		highScore = config.get_value("GAME", "High Score")
 
 
 func _process(delta):
@@ -30,4 +40,8 @@ func _process(delta):
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		var config = ConfigFile.new()
+		config.load("user://data.reyhz")
+		config.set_value("GAME", "High Score", highScore)
+		config.save("user://data.reyhz")
 		get_tree().quit()

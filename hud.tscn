@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://hennvjauu7ii"]
+[gd_scene load_steps=11 format=3 uid="uid://hennvjauu7ii"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_athlr"]
+[ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_qieob"]
 [ext_resource type="Script" path="res://pause_controller.gd" id="2_s5uph"]
+[ext_resource type="Texture2D" uid="uid://dqaxb2u4t6bpn" path="res://sprites/test.png" id="3_u2p7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0rh8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -9,6 +11,14 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="SystemFont" id="SystemFont_kbwwd"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
 subpixel_positioning = 0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1in5e"]
+texture = ExtResource("3_u2p7n")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+draw_center = false
 
 [sub_resource type="SystemFont" id="SystemFont_igqbm"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
@@ -29,6 +39,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_athlr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("2_qieob")
 
 [node name="GameOverController" type="PanelContainer" parent="."]
 visible = false
@@ -121,6 +138,7 @@ offset_left = -164.0
 offset_right = 164.0
 offset_bottom = 35.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1in5e")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HudContainer"]
 layout_mode = 2
@@ -160,6 +178,7 @@ size_flags_horizontal = 3
 [node name="PauseContainer" type="PanelContainer" parent="."]
 process_mode = 2
 visible = false
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -251,9 +270,9 @@ size_flags_horizontal = 3
 
 [node name="Multiplier" type="Label" parent="."]
 layout_mode = 0
-offset_top = 705.0
+offset_top = 675.0
 offset_right = 50.0
-offset_bottom = 757.0
+offset_bottom = 727.0
 theme_override_fonts/font = SubResource("SystemFont_5etge")
 theme_override_font_sizes/font_size = 48
 text = "5x"
