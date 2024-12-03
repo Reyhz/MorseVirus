@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hennvjauu7ii"]
+[gd_scene load_steps=11 format=3 uid="uid://hennvjauu7ii"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_athlr"]
 [ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_qieob"]
@@ -6,18 +6,15 @@
 [ext_resource type="StyleBox" uid="uid://dn8llorqasge3" path="res://sprites/WindowStyleBox.tres" id="3_xxvkd"]
 [ext_resource type="SystemFont" uid="uid://c2jtiwfbpntun" path="res://sprites/Atkinson.tres" id="4_3bbgn"]
 [ext_resource type="SystemFont" uid="uid://cl28h8d65uddv" path="res://sprites/W95FA.tres" id="4_4m3oe"]
+[ext_resource type="Theme" uid="uid://da013glcbrfxf" path="res://sprites/MenuTheme.tres" id="6_6a1tl"]
 
-[sub_resource type="SystemFont" id="SystemFont_igqbm"]
-font_names = PackedStringArray("Atkinson Hyperlegible")
-subpixel_positioning = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xnke"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="SystemFont" id="SystemFont_5d376"]
-font_names = PackedStringArray("Atkinson Hyperlegible")
-subpixel_positioning = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6jyf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="SystemFont" id="SystemFont_5etge"]
-font_names = PackedStringArray("Atkinson Hyperlegible")
-subpixel_positioning = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2meym"]
 
 [node name="Hud" type="Control"]
 z_index = 1
@@ -130,6 +127,23 @@ text = "PRESS [BUTTON] TO GO TO MAIN MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Node2D" type="Node2D" parent="GameOverController"]
+
+[node name="GameOver" type="Label" parent="GameOverController/Node2D"]
+anchors_preset = -1
+anchor_left = 0.108
+anchor_top = 0.128
+anchor_right = 0.108
+anchor_bottom = 0.128
+offset_left = 5.19714
+offset_top = 2.0
+offset_right = 235.197
+offset_bottom = 33.0
+scale = Vector2(0.36, 0.36)
+theme_override_fonts/font = ExtResource("4_4m3oe")
+theme_override_font_sizes/font_size = 32
+text = "GAME_OVER.TXT"
+
 [node name="HudContainer" type="PanelContainer" parent="."]
 texture_filter = 3
 layout_mode = 1
@@ -139,8 +153,8 @@ anchor_top = 0.011
 anchor_right = 0.011
 anchor_bottom = 0.011
 offset_left = -1.8
-offset_top = 0.199999
-offset_right = 590.594
+offset_top = 0.2
+offset_right = 533.594
 offset_bottom = 66.2
 grow_horizontal = 2
 theme_override_styles/panel = ExtResource("3_xxvkd")
@@ -154,7 +168,7 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_3bbgn")
+theme_override_fonts/font = ExtResource("4_4m3oe")
 theme_override_font_sizes/font_size = 32
 text = "SCORE : 123456"
 horizontal_alignment = 1
@@ -169,7 +183,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_3bbgn")
+theme_override_fonts/font = ExtResource("4_4m3oe")
 theme_override_font_sizes/font_size = 32
 text = "XX:XX"
 horizontal_alignment = 1
@@ -183,41 +197,28 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_3bbgn")
+theme_override_fonts/font = ExtResource("4_4m3oe")
 theme_override_font_sizes/font_size = 32
 text = "HP : XX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameInfo" type="Label" parent="."]
-layout_mode = 2
+[node name="Node2D" type="Node2D" parent="HudContainer"]
+
+[node name="GameInfo" type="Label" parent="HudContainer/Node2D"]
+anchors_preset = -1
 anchor_left = 0.015
 anchor_top = 0.014
 anchor_right = 0.015
 anchor_bottom = 0.014
-offset_top = -0.200001
-offset_right = 215.0
-offset_bottom = 30.8
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 220.0
+offset_bottom = 33.0
 scale = Vector2(0.36, 0.36)
 theme_override_fonts/font = ExtResource("4_4m3oe")
 theme_override_font_sizes/font_size = 32
 text = "GAME_INFO.TXT"
-
-[node name="GameOver" type="Label" parent="."]
-visible = false
-layout_mode = 2
-anchor_left = 0.108
-anchor_top = 0.128
-anchor_right = 0.108
-anchor_bottom = 0.128
-offset_left = 0.599991
-offset_top = -0.400002
-offset_right = 230.6
-offset_bottom = 30.6
-scale = Vector2(0.36, 0.36)
-theme_override_fonts/font = ExtResource("4_4m3oe")
-theme_override_font_sizes/font_size = 32
-text = "GAME_OVER.TXT"
 
 [node name="PauseContainer" type="PanelContainer" parent="."]
 process_mode = 2
@@ -228,8 +229,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 175.0
+offset_right = -100.0
+offset_bottom = -175.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_6a1tl")
 script = ExtResource("2_s5uph")
 
 [node name="MarginContainer" type="MarginContainer" parent="PauseContainer"]
@@ -239,79 +245,104 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseContainer/MarginContainer"]
+[node name="MainPause" type="VBoxContainer" parent="PauseContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Settings" type="Label" parent="PauseContainer/MarginContainer/VBoxContainer"]
+[node name="Pause" type="Label" parent="PauseContainer/MarginContainer/MainPause"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_igqbm")
 theme_override_font_sizes/font_size = 36
-text = "SETTINGS"
+theme_override_styles/normal = SubResource("StyleBoxFlat_7xnke")
+text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="PauseContainer/MarginContainer/MainPause"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PauseContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Buttons" type="VBoxContainer" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-
-[node name="Control" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Resume" type="Button" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="Resume" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_5d376")
 theme_override_font_sizes/font_size = 24
 button_mask = 0
 text = "RESUME"
 
-[node name="Control3" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="Settings" type="Button" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="Settings" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_5d376")
 theme_override_font_sizes/font_size = 24
 button_mask = 0
 text = "SETTINGS"
 
-[node name="Control4" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="MainMenu" type="Button" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="MainMenu" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_5d376")
 theme_override_font_sizes/font_size = 24
 button_mask = 0
 text = "MAIN MENU"
 
-[node name="Control2" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="SettingsMenu" type="VBoxContainer" parent="PauseContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseContainer/MarginContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_w6jyf")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="PauseContainer/MarginContainer/SettingsMenu"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+[node name="Keybind" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "ACTION BUTTON : SPACE_BAR"
 
-[node name="Test" type="VBoxContainer" parent="PauseContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LongPressTime" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "LONG PRESSTIME : 200 ms"
+
+[node name="Back" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "BACK"
+
+[node name="WindowName" type="Node2D" parent="PauseContainer"]
+
+[node name="Name" type="Label" parent="PauseContainer/WindowName"]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 79.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("4_4m3oe")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2meym")
+text = "PAUSE.EXE"
+vertical_alignment = 1
 
 [node name="Multiplier" type="Label" parent="."]
 layout_mode = 1
@@ -322,7 +353,7 @@ anchor_bottom = 0.921
 offset_top = 0.199951
 offset_right = 0.399998
 offset_bottom = 0.199951
-theme_override_fonts/font = SubResource("SystemFont_5etge")
+theme_override_fonts/font = ExtResource("4_4m3oe")
 theme_override_font_sizes/font_size = 48
 text = "5x"
 
@@ -338,4 +369,5 @@ offset_right = -7.29999
 offset_bottom = -0.0200043
 grow_vertical = 0
 max_value = 3.2
+allow_greater = true
 show_percentage = false

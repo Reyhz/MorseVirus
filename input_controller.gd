@@ -63,5 +63,3 @@ func _load_keybind(config: ConfigFile):
 		InputMap.action_add_event("CHOSEN_ONE", keybind)
 	else:
 		keybind = InputMap.action_get_events("CHOSEN_ONE")[0]
-	
-

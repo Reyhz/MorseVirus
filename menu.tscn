@@ -5,11 +5,11 @@
 [ext_resource type="Theme" uid="uid://da013glcbrfxf" path="res://sprites/MenuTheme.tres" id="3_dya3j"]
 [ext_resource type="Texture2D" uid="uid://g7yai5swl1yo" path="res://sprites/Computer.png" id="3_n2uo7"]
 [ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/Directory.png" id="4_0g02i"]
+[ext_resource type="SystemFont" uid="uid://cl28h8d65uddv" path="res://sprites/W95FA.tres" id="4_0v6qq"]
 [ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/RecycleBin.png" id="5_1mn12"]
-[ext_resource type="SystemFont" uid="uid://c2jtiwfbpntun" path="res://sprites/Atkinson.tres" id="6_ecr8y"]
 
-[sub_resource type="SystemFont" id="SystemFont_ynyil"]
-font_names = PackedStringArray("Atkinson Hyperlegible")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc8op"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_3b2xy"]
 font_names = PackedStringArray("W95FA")
@@ -42,21 +42,42 @@ anchor_left = 0.219
 anchor_top = 0.254
 anchor_right = 0.781
 anchor_bottom = 0.562
-offset_left = -0.200012
+offset_left = -0.199997
 offset_top = -3.20001
 offset_right = 0.200012
-offset_bottom = 0.399963
+offset_bottom = 0.400024
 theme = ExtResource("3_dya3j")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+[node name="MainMenu" type="HBoxContainer" parent="Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Play" type="Button" parent="Buttons/HBoxContainer"]
+[node name="GameName" type="Node2D" parent="Buttons/MainMenu"]
+
+[node name="Game Name" type="Label" parent="Buttons/MainMenu/GameName"]
+anchors_preset = -1
+anchor_left = 0.361
+anchor_top = 0.31
+anchor_right = 0.639
+anchor_bottom = 0.386
+offset_left = 66.0
+offset_top = -92.0
+offset_right = 288.0
+offset_bottom = -31.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_0v6qq")
+theme_override_font_sizes/font_size = 64
+text = "MORRUS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Buttons/MainMenu"]
 texture_filter = 3
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(115, 38)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_dya3j")
@@ -64,8 +85,8 @@ button_mask = 0
 shortcut_in_tooltip = false
 text = "PLAY"
 
-[node name="Settings" type="Button" parent="Buttons/HBoxContainer"]
-custom_minimum_size = Vector2(125, 0)
+[node name="Settings" type="Button" parent="Buttons/MainMenu"]
+custom_minimum_size = Vector2(115, 38)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_dya3j")
@@ -73,8 +94,8 @@ button_mask = 0
 shortcut_in_tooltip = false
 text = "SETTINGS"
 
-[node name="Quit" type="Button" parent="Buttons/HBoxContainer"]
-custom_minimum_size = Vector2(125, 0)
+[node name="Quit" type="Button" parent="Buttons/MainMenu"]
+custom_minimum_size = Vector2(115, 38)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_dya3j")
@@ -82,22 +103,59 @@ button_mask = 0
 shortcut_in_tooltip = false
 text = "QUIT GAME"
 
-[node name="Game Name" type="Label" parent="."]
-layout_mode = 1
+[node name="SettingsWindow" type="VBoxContainer" parent="Buttons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Buttons/SettingsWindow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_sc8op")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keybind" type="Button" parent="Buttons/SettingsWindow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "ACTION BUTTON : SPACE_BAR"
+
+[node name="LongPressTime" type="Button" parent="Buttons/SettingsWindow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "LONG PRESSTIME : 200 ms"
+
+[node name="MainMenuButton" type="Button" parent="Buttons/SettingsWindow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "MAIN MENU"
+
+[node name="WindowName" type="Node2D" parent="Buttons"]
+
+[node name="Window Name" type="Label" parent="Buttons/WindowName"]
 anchors_preset = -1
-anchor_left = 0.377
-anchor_top = 0.08
-anchor_right = 0.622
-anchor_bottom = 0.145
-offset_left = 0.399994
-offset_top = 184.0
-offset_right = 0.400024
-offset_bottom = 184.0
+anchor_left = 0.361
+anchor_top = 0.31
+anchor_right = 0.639
+anchor_bottom = 0.386
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 48.0
+offset_bottom = 13.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_ynyil")
-theme_override_font_sizes/font_size = 48
-text = "MORRUS"
+theme_override_fonts/font = ExtResource("4_0v6qq")
+theme_override_font_sizes/font_size = 10
+text = "VIRUS.EXE"
+vertical_alignment = 1
 
 [node name="Tutorial" type="Control" parent="."]
 visible = false
@@ -197,50 +255,3 @@ theme_override_font_sizes/font_size = 12
 text = "Recycle Bin"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SettingsController" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 700.0
-offset_bottom = 700.0
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsController"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsController/MarginContainer"]
-layout_mode = 2
-
-[node name="Keybind" type="Button" parent="SettingsController/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("6_ecr8y")
-theme_override_font_sizes/font_size = 20
-button_mask = 0
-text = "ACTION BUTTON : SPACE_BAR"
-
-[node name="LongPressTime" type="Button" parent="SettingsController/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("6_ecr8y")
-theme_override_font_sizes/font_size = 20
-button_mask = 0
-text = "LONG PRESSTIME : 200 ms"
-
-[node name="MainMenuButton" type="Button" parent="SettingsController/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 72)
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_fonts/font = ExtResource("6_ecr8y")
-theme_override_font_sizes/font_size = 24
-button_mask = 0
-text = "MAIN MENU"
