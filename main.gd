@@ -5,7 +5,7 @@ var pressTime = 0
 
 @export var mobScene: PackedScene
 @onready var player = $Player
-var health = 10: get = get_health, set = set_health
+var health = 50: get = get_health, set = set_health
 var score = 0: get = get_score
 var gameTime = 0
 
@@ -54,8 +54,9 @@ var morseValues = {
 
 # TODOLIST: 
 # Tutorial window for first time player --> button to access it if player forgor
-# WARNING Don't forget to do textures, and sound if time allows it ( only 20h left )
-# More mechanics ( if time allows it ) --> powerups, roguelike ( lol ?), deckbuilding ( wth reyhz? )
+# Sound design
+# Better graphics --> maybe hire artist ?
+# More mechanics --> powerups, roguelike, deckbuilding ?
 
 
 # Called when the node enters the scene tree for the first time.
@@ -63,6 +64,7 @@ func _ready():
 	InputController.longPress.connect(_on_long_press)
 	InputController.shortPress.connect(_on_short_press)
 	$Hud.update_score(score)
+	$Hud.update_hp(health)
 	reset_combo()
 
 
@@ -131,12 +133,13 @@ func kill_enemy(enemy: Node2D, playerHit: bool = false):
 		locked = false
 		currValue = ""
 		if !playerHit: 
-			combo_handler()
 			add_score(enemy.scoreValue)
+			combo_handler()
 
 
 func damage_player(damage):
 	health -= damage
+	$Hud.update_hp(health)
 	if(health <= 0):
 		game_over()
 
@@ -145,14 +148,17 @@ func game_over():
 	# TODO: if time allows it make different game over texts !
 	InputController.highScore = max(InputController.highScore, score)
 	locked = false
+	$Hud.gameOver = true
 	$MobSpawn.stop()
 	$Timer.stop()
 	get_tree().call_group("enemy","queue_free")
 	$Hud/%TimeSurvived.text += $Hud.convert_time(int($Hud.gameTime))
 	$Hud/%Score.text += str(score)
-	$Hud/%HighScore.text = str(InputController.highScore)
+	$Hud/%HighScore.text += str(InputController.highScore)
 	$Hud/GameOverController.show()
+	$Hud/GameOver.show()
 	
+	await get_tree().create_timer(1.0).timeout
 	await InputController.pressed
 	get_tree().change_scene_to_file("res://menu.tscn")
 
@@ -175,7 +181,7 @@ func _on_mob_spawn_timeout():
 	
 	var mob = mobScene.instantiate()
 	mob.position = spawnPoint.global_position
-	mob.speed = 150
+	mob.speed = randf_range(25.0, 40.0) * speedModifier
 	mob.dirTo = player.position
 	mob.value = morseValues[morseValues.keys().pick_random()]
 	mob.ded.connect(_on_mob_ded)
@@ -199,16 +205,16 @@ func _on_timer_timeout():
 
 
 func _on_short_press():
-	if lockedValue[currValue.length()] == "." && locked:
+	if locked && lockedValue[currValue.length()] == ".":
 		currValue += "."
 		lockedEnemy.update_text(currValue)
 
 
 func _on_long_press(pressedTime):
-	if pressedTime >= 0.750:
+	if pressedTime >= InputController.longPressTime + 0.500:
 		$Hud/PauseContainer.show()
 		get_tree().paused = true
-	elif lockedValue[currValue.length()] == "-" && locked:
+	elif locked && lockedValue[currValue.length()] == "-":
 		currValue += "-"
 		lockedEnemy.update_text(currValue)
 

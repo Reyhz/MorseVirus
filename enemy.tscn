@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6g7vfdtxfyiu"]
 
-[ext_resource type="Texture2D" uid="uid://gmkf0i62k58n" path="res://icon.svg" id="1_5c76j"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_vqicu"]
-[ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/directory_open_file_mydocs-5.png" id="2_17cex"]
-[ext_resource type="Shader" path="res://Outline.gdshader" id="2_tthoh"]
-[ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/recycle_bin_full_cool-3.png" id="3_d1a4t"]
+[ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/Directory.png" id="2_j3b45"]
+[ext_resource type="Shader" path="res://sprites/Outline.gdshader" id="2_tthoh"]
+[ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/RecycleBin.png" id="3_fktuu"]
+[ext_resource type="Texture2D" uid="uid://gmkf0i62k58n" path="res://sprites/icon.svg" id="5_l5ehv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d04os"]
 resource_local_to_scene = true
@@ -30,12 +30,12 @@ show_behind_parent = true
 z_index = -1
 collision_mask = 0
 script = ExtResource("1_vqicu")
-sprites = Array[CompressedTexture2D]([ExtResource("2_17cex"), ExtResource("3_d1a4t")])
+sprites = Array[CompressedTexture2D]([ExtResource("2_j3b45"), ExtResource("3_fktuu")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_d04os")
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_5c76j")
+texture = ExtResource("5_l5ehv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ta52p")

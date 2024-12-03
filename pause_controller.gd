@@ -20,7 +20,7 @@ func _process(delta):
 		pressTime += delta
 	
 	if Input.is_action_just_released("CHOSEN_ONE"):
-		if pressTime >= 0.750:
+		if pressTime >= longPressTime + 0.500:
 			self.hide()
 			get_tree().paused = false
 		elif pressTime >= longPressTime:

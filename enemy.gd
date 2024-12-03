@@ -60,7 +60,7 @@ func update_text(substring: String = ""):
 	$Text.clear()
 	$Text.append_text("[center]")
 	if substring:
-		$Text.push_color(Color.YELLOW_GREEN)
+		$Text.push_color(Color.MIDNIGHT_BLUE)
 		$Text.append_text(substring)
 		$Text.pop()
 	$Text.append_text(value.substr(substring.length()))

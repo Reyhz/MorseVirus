@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6g7vfdtxfyiu" path="res://enemy.tscn" id="1_3itav"]
 [ext_resource type="Script" path="res://main.gd" id="1_wu8vw"]
-[ext_resource type="Texture2D" uid="uid://g7yai5swl1yo" path="res://sprites/computer_2_cool-4.png" id="4_4fe7o"]
+[ext_resource type="Texture2D" uid="uid://g7yai5swl1yo" path="res://sprites/Computer.png" id="4_4fe7o"]
 [ext_resource type="PackedScene" uid="uid://hennvjauu7ii" path="res://hud.tscn" id="4_cgksi"]
 
 [sub_resource type="Curve2D" id="Curve2D_upvow"]

@@ -1,24 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://hennvjauu7ii"]
+[gd_scene load_steps=10 format=3 uid="uid://hennvjauu7ii"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_athlr"]
 [ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_qieob"]
 [ext_resource type="Script" path="res://pause_controller.gd" id="2_s5uph"]
-[ext_resource type="Texture2D" uid="uid://dqaxb2u4t6bpn" path="res://sprites/test.png" id="3_u2p7n"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0rh8"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="SystemFont" id="SystemFont_kbwwd"]
-font_names = PackedStringArray("Atkinson Hyperlegible")
-subpixel_positioning = 0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1in5e"]
-texture = ExtResource("3_u2p7n")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-draw_center = false
+[ext_resource type="StyleBox" uid="uid://dn8llorqasge3" path="res://sprites/WindowStyleBox.tres" id="3_xxvkd"]
+[ext_resource type="SystemFont" uid="uid://c2jtiwfbpntun" path="res://sprites/Atkinson.tres" id="4_3bbgn"]
+[ext_resource type="SystemFont" uid="uid://cl28h8d65uddv" path="res://sprites/W95FA.tres" id="4_4m3oe"]
 
 [sub_resource type="SystemFont" id="SystemFont_igqbm"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
@@ -30,8 +17,10 @@ subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_5etge"]
 font_names = PackedStringArray("Atkinson Hyperlegible")
+subpixel_positioning = 0
 
 [node name="Hud" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,13 +31,19 @@ script = ExtResource("1_athlr")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -2
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 800.0
+z_as_relative = false
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_qieob")
 
 [node name="GameOverController" type="PanelContainer" parent="."]
 visible = false
+texture_filter = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,7 +57,7 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_d0rh8")
+theme_override_styles/panel = ExtResource("3_xxvkd")
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOverController"]
 layout_mode = 2
@@ -74,7 +69,8 @@ layout_mode = 2
 
 [node name="GameOver" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
 text = "YOUR CAT GIFS GOT STOLEN !"
 horizontal_alignment = 1
@@ -88,7 +84,8 @@ size_flags_vertical = 3
 [node name="TimeSurvived" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
 text = "TIME SURVIVED : "
 horizontal_alignment = 1
@@ -101,7 +98,8 @@ layout_mode = 2
 [node name="Score" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
 text = "SCORE : "
 horizontal_alignment = 1
@@ -110,9 +108,10 @@ vertical_alignment = 1
 [node name="HighScore" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
-text = "HIGH-SCORE : XXX"
+text = "HIGH SCORE : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -122,38 +121,42 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Exit" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
 text = "PRESS [BUTTON] TO GO TO MAIN MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HudContainer" type="PanelContainer" parent="."]
+texture_filter = 3
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -164.0
-offset_right = 164.0
-offset_bottom = 35.0
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.011
+anchor_right = 0.011
+anchor_bottom = 0.011
+offset_left = -1.8
+offset_top = 0.199999
+offset_right = 590.594
+offset_bottom = 66.2
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_1in5e")
+theme_override_styles/panel = ExtResource("3_xxvkd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HudContainer"]
 layout_mode = 2
-
-[node name="Control" type="Control" parent="HudContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="ScoreHud" type="Label" parent="HudContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
-text = "SCORE : 1234567"
+text = "SCORE : 123456"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -165,20 +168,62 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_kbwwd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
 theme_override_font_sizes/font_size = 32
 text = "XX:XX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="HudContainer/HBoxContainer"]
+[node name="Control4" type="Control" parent="HudContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="HP" type="Label" parent="HudContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_3bbgn")
+theme_override_font_sizes/font_size = 32
+text = "HP : XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameInfo" type="Label" parent="."]
+layout_mode = 2
+anchor_left = 0.015
+anchor_top = 0.014
+anchor_right = 0.015
+anchor_bottom = 0.014
+offset_top = -0.200001
+offset_right = 215.0
+offset_bottom = 30.8
+scale = Vector2(0.36, 0.36)
+theme_override_fonts/font = ExtResource("4_4m3oe")
+theme_override_font_sizes/font_size = 32
+text = "GAME_INFO.TXT"
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+layout_mode = 2
+anchor_left = 0.108
+anchor_top = 0.128
+anchor_right = 0.108
+anchor_bottom = 0.128
+offset_left = 0.599991
+offset_top = -0.400002
+offset_right = 230.6
+offset_bottom = 30.6
+scale = Vector2(0.36, 0.36)
+theme_override_fonts/font = ExtResource("4_4m3oe")
+theme_override_font_sizes/font_size = 32
+text = "GAME_OVER.TXT"
 
 [node name="PauseContainer" type="PanelContainer" parent="."]
 process_mode = 2
 visible = false
 z_index = 2
+texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,19 +314,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Multiplier" type="Label" parent="."]
-layout_mode = 0
-offset_top = 675.0
-offset_right = 50.0
-offset_bottom = 727.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.856
+anchor_right = 0.062
+anchor_bottom = 0.921
+offset_top = 0.199951
+offset_right = 0.399998
+offset_bottom = 0.199951
 theme_override_fonts/font = SubResource("SystemFont_5etge")
 theme_override_font_sizes/font_size = 48
 text = "5x"
 
 [node name="TimeLeft" type="ProgressBar" parent="Multiplier"]
 custom_minimum_size = Vector2(0, 40)
-layout_mode = 0
-offset_top = 52.0
-offset_right = 800.0
-offset_bottom = 79.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.865
+anchor_right = 16.146
+anchor_bottom = 1.635
+offset_top = 0.0199966
+offset_right = -7.29999
+offset_bottom = -0.0200043
+grow_vertical = 0
 max_value = 3.2
 show_percentage = false
