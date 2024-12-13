@@ -1,0 +1,303 @@
+[gd_scene load_steps=10 format=3 uid="uid://rq3xxvljvngx"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_tdpw8"]
+[ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_m6cwo"]
+[ext_resource type="Theme" uid="uid://da013glcbrfxf" path="res://sprites/MenuTheme.tres" id="3_dya3j"]
+[ext_resource type="Texture2D" uid="uid://g7yai5swl1yo" path="res://sprites/Computer.png" id="3_n2uo7"]
+[ext_resource type="FontFile" uid="uid://brx4ig363i0jb" path="res://sprites/W95FA.otf" id="3_pxqta"]
+[ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/Directory.png" id="4_0g02i"]
+[ext_resource type="Texture2D" uid="uid://bqxbst38g4niv" path="res://sprites/TaskBarTexture.png" id="4_l1wka"]
+[ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/RecycleBin.png" id="5_1mn12"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc8op"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menu" type="Control"]
+texture_filter = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tdpw8")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m6cwo")
+
+[node name="Time" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 774.0
+offset_right = 796.0
+offset_bottom = 797.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 18
+text = "XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Start" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 776.0
+offset_right = 86.0
+offset_bottom = 799.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskBarPanel" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 774.0
+offset_right = 215.0
+offset_bottom = 798.0
+texture = ExtResource("4_l1wka")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+text = "VIRUS.EXE"
+vertical_alignment = 1
+
+[node name="Buttons" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.219
+anchor_top = 0.254
+anchor_right = 0.781
+anchor_bottom = 0.562
+offset_left = -0.199997
+offset_top = -3.20001
+offset_right = 0.200012
+offset_bottom = 0.400024
+theme = ExtResource("3_dya3j")
+
+[node name="MainMenu" type="HBoxContainer" parent="Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="GameName" type="Node2D" parent="Buttons/MainMenu"]
+
+[node name="Game Name" type="Label" parent="Buttons/MainMenu/GameName"]
+anchors_preset = -1
+anchor_left = 0.361
+anchor_top = 0.31
+anchor_right = 0.639
+anchor_bottom = 0.386
+offset_left = 66.0
+offset_top = -92.0
+offset_right = 288.0
+offset_bottom = -31.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 64
+text = "MORRUS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Buttons/MainMenu"]
+texture_filter = 3
+custom_minimum_size = Vector2(115, 38)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_dya3j")
+button_mask = 0
+shortcut_in_tooltip = false
+text = "PLAY"
+
+[node name="Settings" type="Button" parent="Buttons/MainMenu"]
+custom_minimum_size = Vector2(115, 38)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_dya3j")
+button_mask = 0
+shortcut_in_tooltip = false
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="Buttons/MainMenu"]
+custom_minimum_size = Vector2(115, 38)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_dya3j")
+button_mask = 0
+shortcut_in_tooltip = false
+text = "QUIT GAME"
+
+[node name="SettingsWindow" type="VBoxContainer" parent="Buttons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Buttons/SettingsWindow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_sc8op")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keybind" type="Button" parent="Buttons/SettingsWindow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "ACTION BUTTON : SPACE_BAR"
+
+[node name="LongPressTime" type="Button" parent="Buttons/SettingsWindow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "LONG PRESSTIME : 200 ms"
+
+[node name="MainMenuButton" type="Button" parent="Buttons/SettingsWindow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "MAIN MENU"
+
+[node name="WindowName" type="Node2D" parent="Buttons"]
+
+[node name="Window Name" type="Label" parent="Buttons/WindowName"]
+anchors_preset = -1
+anchor_left = 0.361
+anchor_top = 0.31
+anchor_right = 0.639
+anchor_bottom = 0.386
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 48.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 10
+text = "VIRUS.EXE"
+vertical_alignment = 1
+
+[node name="Tutorial" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 136.0
+offset_right = 762.0
+offset_bottom = 692.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/PanelContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "HOW TO PLAY :
+
+"
+
+[node name="Icons" type="Node" parent="."]
+
+[node name="MyPC" type="TextureRect" parent="Icons"]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 88.0
+offset_bottom = 88.0
+texture = ExtResource("3_n2uo7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Icons/MyPC"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 12
+text = "My Computer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MyPC2" type="TextureRect" parent="Icons"]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 144.0
+offset_right = 88.0
+offset_bottom = 192.0
+texture = ExtResource("4_0g02i")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="Icons/MyPC2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 47.0
+offset_right = 30.5
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 12
+text = "Documents"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MyPC3" type="TextureRect" parent="Icons"]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 248.0
+offset_right = 88.0
+offset_bottom = 296.0
+texture = ExtResource("5_1mn12")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="Icons/MyPC3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 47.0
+offset_right = 30.5
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 12
+text = "Recycle Bin"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,507 @@
+[gd_scene load_steps=13 format=3 uid="uid://hennvjauu7ii"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_athlr"]
+[ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_qieob"]
+[ext_resource type="Script" path="res://pause_controller.gd" id="2_s5uph"]
+[ext_resource type="FontFile" uid="uid://brx4ig363i0jb" path="res://sprites/W95FA.otf" id="3_6cxc2"]
+[ext_resource type="StyleBox" uid="uid://dn8llorqasge3" path="res://sprites/WindowStyleBox.tres" id="3_xxvkd"]
+[ext_resource type="Texture2D" uid="uid://bqxbst38g4niv" path="res://sprites/TaskBarTexture.png" id="4_veg0r"]
+[ext_resource type="Theme" uid="uid://da013glcbrfxf" path="res://sprites/MenuTheme.tres" id="6_6a1tl"]
+[ext_resource type="Texture2D" uid="uid://c0hcxjeuaagnx" path="res://sprites/ProgressText_Outline.png" id="9_hrn5j"]
+[ext_resource type="Texture2D" uid="uid://cthml6wvlasoo" path="res://sprites/ProgressText_Inline.png" id="10_jpau1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xnke"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6jyf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2meym"]
+
+[node name="Hud" type="Control"]
+z_index = 1
+texture_filter = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_athlr")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+z_as_relative = false
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qieob")
+
+[node name="Time" type="Label" parent="Background"]
+offset_left = 715.0
+offset_top = 774.0
+offset_right = 796.0
+offset_bottom = 797.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 18
+text = "XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Start" type="Label" parent="Background"]
+offset_left = 25.0
+offset_top = 776.0
+offset_right = 86.0
+offset_bottom = 799.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskBarPanel" type="TextureRect" parent="Background"]
+offset_left = 95.0
+offset_top = 774.0
+offset_right = 215.0
+offset_bottom = 798.0
+texture = ExtResource("4_veg0r")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "GAME_INFO.TX..."
+vertical_alignment = 1
+
+[node name="TaskBarPanel2" type="TextureRect" parent="Background"]
+offset_left = 218.0
+offset_top = 774.0
+offset_right = 338.0
+offset_bottom = 798.0
+texture = ExtResource("4_veg0r")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "PAUSE.EXE"
+vertical_alignment = 1
+
+[node name="TaskBarPanel3" type="TextureRect" parent="Background"]
+offset_left = 341.0
+offset_top = 774.0
+offset_right = 461.0
+offset_bottom = 798.0
+texture = ExtResource("4_veg0r")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "GAME_OVER.T..."
+vertical_alignment = 1
+
+[node name="TaskBarPanel4" type="TextureRect" parent="Background"]
+offset_left = 464.0
+offset_top = 774.0
+offset_right = 584.0
+offset_bottom = 798.0
+texture = ExtResource("4_veg0r")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "MULTIPLIER.EX..."
+vertical_alignment = 1
+
+[node name="GameOverController" type="PanelContainer" parent="."]
+visible = false
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("3_xxvkd")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverController"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverController/MarginContainer"]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "YOUR CAT GIFS GOT STOLEN !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameOverController/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimeSurvived" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "TIME SURVIVED : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="GameOverController/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Score" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "SCORE : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "HIGH SCORE : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer3" type="Control" parent="GameOverController/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Exit" type="Label" parent="GameOverController/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "PRESS [BUTTON] TO GO TO MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="GameOverController"]
+
+[node name="GameOver" type="Label" parent="GameOverController/Node2D"]
+anchors_preset = -1
+anchor_left = 0.108
+anchor_top = 0.128
+anchor_right = 0.108
+anchor_bottom = 0.128
+offset_left = 5.19714
+offset_top = 2.0
+offset_right = 235.197
+offset_bottom = 33.0
+scale = Vector2(0.36, 0.36)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "GAME_OVER.TXT"
+
+[node name="HudContainer" type="PanelContainer" parent="."]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.011
+anchor_right = 0.011
+anchor_bottom = 0.011
+offset_left = -1.8
+offset_top = 0.2
+offset_right = 533.594
+offset_bottom = 66.2
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("3_xxvkd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ScoreHud" type="Label" parent="HudContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "SCORE : 123456"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="HudContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Time" type="Label" parent="HudContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="HudContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="HP" type="Label" parent="HudContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "HP : XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="HudContainer"]
+
+[node name="GameInfo" type="Label" parent="HudContainer/Node2D"]
+anchors_preset = -1
+anchor_left = 0.015
+anchor_top = 0.014
+anchor_right = 0.015
+anchor_bottom = 0.014
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 220.0
+offset_bottom = 33.0
+scale = Vector2(0.36, 0.36)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 32
+text = "GAME_INFO.TXT"
+
+[node name="PauseContainer" type="PanelContainer" parent="."]
+process_mode = 2
+visible = false
+z_index = 2
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 175.0
+offset_right = -100.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_6a1tl")
+script = ExtResource("2_s5uph")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="MainPause" type="VBoxContainer" parent="PauseContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Pause" type="Label" parent="PauseContainer/MarginContainer/MainPause"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_7xnke")
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="PauseContainer/MarginContainer/MainPause"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Resume" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "RESUME"
+
+[node name="Settings" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "SETTINGS"
+
+[node name="MainMenu" type="Button" parent="PauseContainer/MarginContainer/MainPause"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "MAIN MENU"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="PauseContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseContainer/MarginContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_w6jyf")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="PauseContainer/MarginContainer/SettingsMenu"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Keybind" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "ACTION BUTTON : SPACE_BAR"
+
+[node name="LongPressTime" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+button_mask = 0
+text = "LONG PRESSTIME : 200 ms"
+
+[node name="Back" type="Button" parent="PauseContainer/MarginContainer/SettingsMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "BACK"
+
+[node name="WindowName" type="Node2D" parent="PauseContainer"]
+
+[node name="Name" type="Label" parent="PauseContainer/WindowName"]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 79.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2meym")
+text = "PAUSE.EXE"
+vertical_alignment = 1
+
+[node name="MultPanel" type="PanelContainer" parent="."]
+texture_filter = 3
+layout_mode = 0
+offset_left = 545.0
+offset_top = 698.0
+offset_right = 785.0
+offset_bottom = 754.0
+theme = ExtResource("6_6a1tl")
+
+[node name="TimeLeft" type="TextureProgressBar" parent="MultPanel"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 8
+max_value = 3.2
+step = 0.01
+value = 0.9
+allow_greater = true
+texture_under = ExtResource("9_hrn5j")
+texture_progress = ExtResource("10_jpau1")
+
+[node name="Container" type="Node2D" parent="MultPanel"]
+
+[node name="Multiplier" type="Label" parent="MultPanel/Container"]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_left = 40.0
+offset_top = 17.0
+offset_right = 123.0
+offset_bottom = 33.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6cxc2")
+text = "Multiplier : 5X"
+vertical_alignment = 1
+
+[node name="WindowName" type="Label" parent="MultPanel/Container"]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 83.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("3_6cxc2")
+theme_override_font_sizes/font_size = 10
+text = "MULTIPLIER.EXE"
