@@ -5,6 +5,7 @@ var pressTime = 0
 var highScore = 0
 
 var keybind = null
+var firstTime = true
 
 signal pressed
 signal shortPress
@@ -16,12 +17,13 @@ func _ready():
 	var loaded = config.load("user://data.reyhz")
 	
 	# Setting file does not exist so we save the default value
-	if loaded == ERR_FILE_NOT_FOUND:
+	if loaded == ERR_FILE_NOT_FOUND or firstTime:
+		firstTime = false
 		config.set_value("GAME", "High Score", highScore)
 		config.set_value("GAME", "CHOSEN ONE", InputMap.action_get_events("CHOSEN_ONE"))
 		config.set_value("GAME", "Long Press Time", longPressTime)
+		config.set_value("GAME", "First Time", firstTime)
 		config.save("user://data.reyhz")
-		return
 	
 	# Setting file does exist so we set the values accordingly
 	highScore = config.get_value("GAME", "High Score")
@@ -58,7 +60,7 @@ func _notification(what):
 
 func _load_keybind(config: ConfigFile):
 	if config.has_section_key("GAME", "CHOSEN ONE"):
-		keybind = config.get_value("GAME", "CHOSEN ONE")
+		keybind = config.get_value("GAME", "CHOSEN ONE")[0]
 		InputMap.action_erase_events("CHOSEN_ONE")
 		InputMap.action_add_event("CHOSEN_ONE", keybind)
 	else:

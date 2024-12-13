@@ -23,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	$Background/Time.text = Time.get_time_string_from_system().left(-3)
 
 
 func _on_short_press():

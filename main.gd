@@ -112,7 +112,7 @@ func add_score(toAdd):
 func combo_handler():
 	if !inCombo:
 		inCombo = true
-		$Hud/Multiplier.show()
+		$Hud/MultPanel.show()
 	
 	multiplier = multiplier + 1 if multiplier < 5 else multiplier
 	comboTime += 1.2 - (0.1 * (multiplier - 1))
@@ -120,7 +120,7 @@ func combo_handler():
 
 
 func reset_combo():
-	$Hud/Multiplier.hide()
+	$Hud/MultPanel.hide()
 	inCombo = false
 	multiplier = 1
 	comboTime = 2.0
@@ -156,7 +156,6 @@ func game_over():
 	$Hud/%Score.text += str(score)
 	$Hud/%HighScore.text += str(InputController.highScore)
 	$Hud/GameOverController.show()
-	$Hud/GameOver.show()
 	
 	await get_tree().create_timer(1.0).timeout
 	await InputController.pressed

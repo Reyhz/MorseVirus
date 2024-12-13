@@ -4,15 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dd5ljx6nt73rt" path="res://sprites/MainMenuBG.png" id="2_m6cwo"]
 [ext_resource type="Theme" uid="uid://da013glcbrfxf" path="res://sprites/MenuTheme.tres" id="3_dya3j"]
 [ext_resource type="Texture2D" uid="uid://g7yai5swl1yo" path="res://sprites/Computer.png" id="3_n2uo7"]
+[ext_resource type="FontFile" uid="uid://brx4ig363i0jb" path="res://sprites/W95FA.otf" id="3_pxqta"]
 [ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/Directory.png" id="4_0g02i"]
-[ext_resource type="SystemFont" uid="uid://cl28h8d65uddv" path="res://sprites/W95FA.tres" id="4_0v6qq"]
+[ext_resource type="Texture2D" uid="uid://bqxbst38g4niv" path="res://sprites/TaskBarTexture.png" id="4_l1wka"]
 [ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/RecycleBin.png" id="5_1mn12"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc8op"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="SystemFont" id="SystemFont_3b2xy"]
-font_names = PackedStringArray("W95FA")
 
 [node name="Menu" type="Control"]
 texture_filter = 3
@@ -23,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tdpw8")
-metadata/_edit_vertical_guides_ = [175.0, 625.0, 400.0]
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 3
@@ -34,6 +31,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_m6cwo")
+
+[node name="Time" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 774.0
+offset_right = 796.0
+offset_bottom = 797.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+theme_override_font_sizes/font_size = 18
+text = "XX:XX"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Start" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 776.0
+offset_right = 86.0
+offset_bottom = 799.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskBarPanel" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 774.0
+offset_right = 215.0
+offset_bottom = 798.0
+texture = ExtResource("4_l1wka")
+
+[node name="Text" type="Label" parent="Background/TaskBarPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.083
+anchor_right = 0.992
+anchor_bottom = 1.042
+offset_left = -0.04
+offset_top = 0.0079999
+offset_right = -0.0400085
+offset_bottom = -0.00800133
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pxqta")
+text = "VIRUS.EXE"
+vertical_alignment = 1
 
 [node name="Buttons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -69,7 +115,7 @@ offset_right = 288.0
 offset_bottom = -31.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_0v6qq")
+theme_override_fonts/font = ExtResource("3_pxqta")
 theme_override_font_sizes/font_size = 64
 text = "MORRUS"
 horizontal_alignment = 1
@@ -152,7 +198,7 @@ offset_top = 3.0
 offset_right = 48.0
 offset_bottom = 13.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_0v6qq")
+theme_override_fonts/font = ExtResource("3_pxqta")
 theme_override_font_sizes/font_size = 10
 text = "VIRUS.EXE"
 vertical_alignment = 1
@@ -200,7 +246,7 @@ offset_top = 50.0
 offset_right = 20.0
 offset_bottom = 73.0
 grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_3b2xy")
+theme_override_fonts/font = ExtResource("3_pxqta")
 theme_override_font_sizes/font_size = 12
 text = "My Computer"
 horizontal_alignment = 1
@@ -225,7 +271,7 @@ offset_top = 47.0
 offset_right = 30.5
 offset_bottom = 70.0
 grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_3b2xy")
+theme_override_fonts/font = ExtResource("3_pxqta")
 theme_override_font_sizes/font_size = 12
 text = "Documents"
 horizontal_alignment = 1
@@ -250,7 +296,7 @@ offset_top = 47.0
 offset_right = 30.5
 offset_bottom = 70.0
 grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_3b2xy")
+theme_override_fonts/font = ExtResource("3_pxqta")
 theme_override_font_sizes/font_size = 12
 text = "Recycle Bin"
 horizontal_alignment = 1

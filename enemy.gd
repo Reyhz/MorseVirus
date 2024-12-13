@@ -7,14 +7,12 @@ var speed = 25.0: get = get_speed, set = set_speed
 var value = "": get = get_value, set = set_value
 @export var scoreValue = 10: get = get_score_value
 
-@export var sprites: Array[CompressedTexture2D] = []
-
 signal ded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_text()
-	$Sprite2D.texture = sprites.pick_random()
+	$Sprite2D.rotation = position.direction_to(dirTo).angle() + (PI/2)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -10,6 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$Background/Time.text = Time.get_time_string_from_system().left(-3)
 	if !get_tree().paused && !gameOver:
 		gameTime += delta
 		%Time.text = convert_time(int(gameTime))
@@ -28,8 +29,8 @@ func update_score(score: int):
 
 
 func update_combo(mutliplier: int, timeLeft: float):
-	$Multiplier.text = str(mutliplier) + "x"
-	$Multiplier/TimeLeft.value = timeLeft
+	%Multiplier.text = "Multiplier : " + str(mutliplier) + "x"
+	$MultPanel/TimeLeft.value = timeLeft
 
 
 func update_hp(health: int):

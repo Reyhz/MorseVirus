@@ -1,17 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6g7vfdtxfyiu"]
+[gd_scene load_steps=8 format=3 uid="uid://c6g7vfdtxfyiu"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_vqicu"]
-[ext_resource type="Texture2D" uid="uid://6p1bfo4m0t78" path="res://sprites/Directory.png" id="2_j3b45"]
 [ext_resource type="Shader" path="res://sprites/Outline.gdshader" id="2_tthoh"]
-[ext_resource type="Texture2D" uid="uid://ipwsc1cj7nn6" path="res://sprites/RecycleBin.png" id="3_fktuu"]
-[ext_resource type="Texture2D" uid="uid://gmkf0i62k58n" path="res://sprites/icon.svg" id="5_l5ehv"]
+[ext_resource type="Texture2D" uid="uid://brvdp2wdfclij" path="res://sprites/Bug.png" id="2_vwsqu"]
 [ext_resource type="SystemFont" uid="uid://c2jtiwfbpntun" path="res://sprites/Atkinson.tres" id="6_xk4tn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d04os"]
 resource_local_to_scene = true
 shader = ExtResource("2_tthoh")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 6.0
+shader_parameter/width = 4.0
 shader_parameter/pattern = 1
 shader_parameter/inside = false
 shader_parameter/add_margins = true
@@ -28,12 +26,10 @@ show_behind_parent = true
 z_index = -1
 collision_mask = 0
 script = ExtResource("1_vqicu")
-sprites = Array[CompressedTexture2D]([ExtResource("2_j3b45"), ExtResource("3_fktuu")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_d04os")
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("5_l5ehv")
+texture = ExtResource("2_vwsqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ta52p")

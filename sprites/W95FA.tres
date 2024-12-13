@@ -1,0 +1,4 @@
+[gd_resource type="SystemFont" format=3 uid="uid://cl28h8d65uddv"]
+
+[resource]
+font_names = PackedStringArray("W95FA")
